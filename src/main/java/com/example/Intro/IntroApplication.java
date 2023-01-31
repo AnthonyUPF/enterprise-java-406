@@ -31,7 +31,6 @@ public class IntroApplication implements CommandLineRunner {
 
 	}
 
-
 	@Override
 	public void run(String... args) throws Exception {
 		employeeRepository.saveAll(Arrays.asList(

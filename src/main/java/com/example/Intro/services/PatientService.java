@@ -51,19 +51,33 @@ public class PatientService {
     //Lab404
     //1 Create a route to add a new patient.
     public Patient createNewPatient(PatientDTO patientDTO) {
-        if(id!=null && employeeRepository.findById(id).isPresent() && status!=null) {
-        Employee employee = employeeRepository.findById(patientDTO.getEmployeeId()).get();
-        Patient patient= new Patient(patientDTO.getName(), patientDTO.getDateOfBirth(), employee);
-        return patientRepository.save(patient);
+        if(patientDTO!=null) {
+            Employee employee = employeeRepository.findById(patientDTO.getEmployeeId()).get();
+            Patient patient = new Patient(patientDTO.getName(), patientDTO.getDateOfBirth(), employee);
+            return patientRepository.save(patient);
+        }else{
+            return null;
+        }
     }
 
     //5 Create a route to update patient’s information (the user should be able to update any patient information through this route).
-
-
     public void updatePatientsInformation(Integer id, String name, LocalDate dateOfBirth, Integer doctorId) {
-        Patient patient= patientRepository.findById(id).get();
+        if(id!=null && patientRepository.findById(id).isPresent()){
+            Patient patient = patientRepository.findById(id).get();
 
+            if(name!=null){
+                patient.setName(name);
+            }
+            if(dateOfBirth!=null){
+                patient.setDateOfBirth(dateOfBirth);
+            }
+            if(doctorId!=null && employeeRepository.findById(doctorId).isPresent()){
+                Employee doctor = employeeRepository.findById(doctorId).get();
+                patient.setAdmittedBy(doctor);
+            }
 
+            patientRepository.save(patient);
+        }
     }
 
 
