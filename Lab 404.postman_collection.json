@@ -1,0 +1,149 @@
+{
+	"info": {
+		"_postman_id": "949b34e8-634c-4db8-ba40-2d390f08f46d",
+		"name": "Lab 404",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25572879"
+	},
+	"item": [
+		{
+			"name": "1- Create a route to add a new patient.",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Jaime Harker\",\r\n    \"dateOfBirth\": \"1994-03-02\",\r\n    \"employeeId\": 564134\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/patients/new",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patients",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2-Create a route to add a new doctor.",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"employeeId\": 254575,\r\n    \"department\": \"psychiatric\",\r\n    \"name\": \"Jonathan Rodriguez\",\r\n    \"status\": \"ON\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/doctors/new",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"doctors",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3-Create a route to change a doctor’s status.",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/doctors-status/166552?status=OFF",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"doctors-status",
+						"166552"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "OFF"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4-Create a route to update a doctor’s department.",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/doctors-department/166552?department=cardiology",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"doctors-department",
+						"166552"
+					],
+					"query": [
+						{
+							"key": "department",
+							"value": "cardiology"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5-Create a route to update patient’s information (the user should be able to update any patient information through this route).",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/patients-information/5?name=Damian Garcia&dateOfBirth=2000-02-15&doctorId= 564134",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patients-information",
+						"5"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Damian Garcia"
+						},
+						{
+							"key": "dateOfBirth",
+							"value": "2000-02-15"
+						},
+						{
+							"key": "doctorId",
+							"value": " 564134"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

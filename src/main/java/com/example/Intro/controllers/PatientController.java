@@ -69,7 +69,7 @@ public class PatientController {
     }
 
     //5 Create a route to update patient’s information (the user should be able to update any patient information through this route).
-    @PutMapping("/patients/{id}")
+    @PutMapping("/patients-information/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updatePatientInformation(@PathVariable Integer id, @RequestParam String name, @RequestParam LocalDate dateOfBirth, @RequestParam Integer doctorId){
         patientService.updatePatientsInformation(id,name,dateOfBirth,doctorId);
