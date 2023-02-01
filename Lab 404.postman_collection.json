@@ -117,29 +117,24 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n    \"name\": \"Damian Garcia\",\r\n    \"dateOfBirth\": \"1994-03-02\",\r\n    \"employeeId\": 564134\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8080/patients-information/5?name=Damian Garcia&dateOfBirth=2000-02-15&doctorId= 564134",
+					"raw": "localhost:8080/patients-information/6",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"patients-information",
-						"5"
-					],
-					"query": [
-						{
-							"key": "name",
-							"value": "Damian Garcia"
-						},
-						{
-							"key": "dateOfBirth",
-							"value": "2000-02-15"
-						},
-						{
-							"key": "doctorId",
-							"value": " 564134"
-						}
+						"6"
 					]
 				}
 			},

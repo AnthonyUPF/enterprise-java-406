@@ -13,6 +13,8 @@ import java.util.List;
 @Repository
 public interface PatientRepository extends JpaRepository<Patient,Integer> {
 
+    List<Patient> findByName(String name);
+
     @Query(value = "SELECT p FROM Patient p WHERE dateOfBirth BETWEEN :startDate AND :endDate")
     List<Patient> findAllPatientsBetweenDatesOfBirth(@Param("startDate")LocalDate startDate,@Param("endDate")LocalDate endDate);
 

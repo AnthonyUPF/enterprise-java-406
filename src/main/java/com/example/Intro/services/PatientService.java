@@ -7,8 +7,10 @@ import com.example.Intro.models.Status;
 import com.example.Intro.repositories.EmployeeRepository;
 import com.example.Intro.repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -51,33 +53,39 @@ public class PatientService {
     //Lab404
     //1 Create a route to add a new patient.
     public Patient createNewPatient(PatientDTO patientDTO) {
-        if(patientDTO!=null) {
-            Employee employee = employeeRepository.findById(patientDTO.getEmployeeId()).get();
-            Patient patient = new Patient(patientDTO.getName(), patientDTO.getDateOfBirth(), employee);
-            return patientRepository.save(patient);
-        }else{
-            return null;
+
+        if(!patientRepository.findByName(patientDTO.getName()).isEmpty()){
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
+                    "There is a patient whose name already exists in the database");
         }
+
+        Employee employee = employeeRepository.findById(patientDTO.getEmployeeId()).get();
+        Patient patient = new Patient(patientDTO.getName(), patientDTO.getDateOfBirth(), employee);
+        return patientRepository.save(patient);
     }
 
-    //5 Create a route to update patient’s information (the user should be able to update any patient information through this route).
-    public void updatePatientsInformation(Integer id, String name, LocalDate dateOfBirth, Integer doctorId) {
-        if(id!=null && patientRepository.findById(id).isPresent()){
-            Patient patient = patientRepository.findById(id).get();
 
-            if(name!=null){
-                patient.setName(name);
+    //5 Create a route to update patient’s information (the user should be able to update any patient information through this route).
+    public Patient updatePatientsInformation(Integer id, PatientDTO newPatient) {
+
+          Patient patient=patientRepository.findById(id).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "The product you are looking for doesn't exist in the database"));
+
+
+            if(newPatient.getName() !=null){
+                patient.setName(newPatient.getName() );
             }
-            if(dateOfBirth!=null){
-                patient.setDateOfBirth(dateOfBirth);
+            if(newPatient.getDateOfBirth() !=null){
+                patient.setDateOfBirth(newPatient.getDateOfBirth());
             }
-            if(doctorId!=null && employeeRepository.findById(doctorId).isPresent()){
-                Employee doctor = employeeRepository.findById(doctorId).get();
+            if(newPatient.getEmployeeId()  !=null && employeeRepository.findById(newPatient.getEmployeeId() ).isPresent()){
+                Employee doctor = employeeRepository.findById(newPatient.getEmployeeId() ).get();
                 patient.setAdmittedBy(doctor);
             }
 
-            patientRepository.save(patient);
-        }
+           return patientRepository.save(patient);
+
     }
 
 
