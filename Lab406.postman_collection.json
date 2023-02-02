@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "50b55aa7-cbb1-4088-9532-8ed43b9342d1",
+		"name": "Lab406",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25572879"
+	},
+	"item": [
+		{
+			"name": "2-Create a route for adding new products",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"departmentId\": 1,\r\n    \"name\": \"small shovel\",\r\n    \"quantity\": 50\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/products/new",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3-Create a route for decrementing the quantity of a product by an amount specified in a parameter",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/products-decrementing/1?quantity=10",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products-decrementing",
+						"1"
+					],
+					"query": [
+						{
+							"key": "quantity",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4-Create a route to get all products by department.",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/products-department/edible plants",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products-department",
+						"edible plants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5-Create a route to get a product by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/products-id/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products-id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6-Create a route to add a new department",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/departments/electric tools",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"departments",
+						"electric tools"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7-Create a DELETE route to delete products from the product list by id.",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/departments-delete/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"departments-delete",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

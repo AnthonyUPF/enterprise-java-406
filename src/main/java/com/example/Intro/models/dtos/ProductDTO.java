@@ -1,39 +1,37 @@
-package com.example.Intro.models;
+package com.example.Intro.models.dtos;
 
-import jakarta.persistence.*;
+import com.example.Intro.models.Department;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
-@Entity
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productId;
+public class ProductDTO {
 
-    @ManyToOne
-    @JoinColumn(name="department_id")
-    private Department department;
+    @NotNull
+    @NotEmpty
+    private Long departmentId;
+
 
     @NotNull
     @NotEmpty
     private String name;
 
-
+    @NotNull
+    @NotEmpty
     private Integer quantity;
 
-    public Product() {
-    }
-
-    public Product(Department departmentId, String name, Integer quantity) {
-        this.department = departmentId;
+    public ProductDTO(Long departmentId, String name, Integer quantity) {
+        this.departmentId = departmentId;
         this.name = name;
         this.quantity = quantity;
     }
 
-    public Department getDepartment() {
-        return department;
+    public Long getDepartmentId() {
+        return departmentId;
     }
 
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
+    }
 
     public String getName() {
         return name;
