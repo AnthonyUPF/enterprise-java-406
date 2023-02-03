@@ -36,11 +36,13 @@ public class ProductController implements ProductServiceInterface {
     }
 
     @GetMapping("/products-department/{department}")
+    @ResponseStatus(HttpStatus.OK)
     public List<Product> getAllProductsByDepartment(@PathVariable String department) {
         return productService.getAllProductsByDepartment(department);
     }
 
     @GetMapping("products-id/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Product getProductById(@PathVariable Long id) {
         return productService.getProductById(id);
     }

@@ -50,4 +50,8 @@ public class Product {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
+    public Long getProductId() {
+        return productId;
+    }
 }

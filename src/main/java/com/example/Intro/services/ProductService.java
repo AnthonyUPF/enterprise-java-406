@@ -62,7 +62,7 @@ public class ProductService implements ProductServiceInterface {
     @Override
     public Product getProductById(Long id) {
         return  productRepository.findById(id).orElseThrow(()->
-                new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
+                new ResponseStatusException(HttpStatus.BAD_REQUEST,
                 "The product id is not valid"));
     }
 

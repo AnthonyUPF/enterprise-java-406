@@ -28,7 +28,7 @@ public class DepartmentService implements DepartmetnServicesInterface {
     @Override
     public Department addNewDepartment(String department) {
         if(!departmentRepository.findByDepartment(department).isEmpty()){
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                     "There is a department whose name already exists in the database");
         }
 
